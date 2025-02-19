@@ -11,8 +11,6 @@ import img9 from "../Images/9.jpg";
 import img10 from "../Images/10.jpg";
 import img11 from "../Images/11.jpg";
 
-import Carousel from "react-bootstrap/Carousel";
-
 const Carouselpage = () => {
   const images = [
     img1,
