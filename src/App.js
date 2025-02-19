@@ -11,6 +11,7 @@ import img9 from "./Images/9.jpg";
 import img10 from "./Images/10.jpg";
 import img11 from "./Images/11.jpg";
 import Carousel from "./Galary/Carousel";
+import Movingpage from "./Galary/Movingpage";
 
 function App() {
   const [tab, setTab] = useState("carousel");
@@ -108,7 +109,8 @@ function App() {
           <h2 className="romantic-title text-4xl text-center text-pink-600 mb-8">
             Our Special Moments
           </h2>
-       <Carousel />
+       {/* <Carousel /> */}
+       <Movingpage />
         </section>
       )}
 

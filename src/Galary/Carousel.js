@@ -47,7 +47,7 @@ const Carouselpage = () => {
         {images.map((img, index) => (
           <img
             key={index}
-            src={img} // ✅ Fixed: Image now displays
+            // src={img} // ✅ Fixed: Image now displays
             alt={`Slide ${index + 1}`}
             className="w-64 h-64 object-cover rounded-lg shadow-xl"
           />
