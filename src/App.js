@@ -109,7 +109,7 @@ function App() {
           <h2 className="romantic-title text-4xl text-center text-pink-600 mb-8">
             Our Special Moments
           </h2>
-        <Carousel /> 
+     {/* // <Carousel />  */}
        <Movingpage />
         </section>
       )}
@@ -143,7 +143,7 @@ function App() {
             {images.map((img, index) => (
               <img
                 key={index}
-                 src={img}
+                // src={img}
                 alt={`Masonry ${index + 1}`}
                 className="w-full rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 mb-4"
               />
@@ -165,7 +165,7 @@ function App() {
                 className="memory-card bg-white p-6 rounded-xl shadow-lg"
               >
                 <img
-                   src={memory.image}
+               //    src={memory.image}
                   alt={memory.title}
                   className="w-full h-48 object-cover rounded-lg mb-4"
                 />

@@ -73,7 +73,9 @@ const CarouselPage = () => {
       <CarouselWrapper>
         {images.map((src, index) => (
           <CarouselItem key={index} index={index}>
-            <img src={src} alt={`Wild Animal ${index + 1}`} />
+            <img
+            //  src={src} 
+             alt={`Wild Animal ${index + 1}`} />
           </CarouselItem>
         ))}
       </CarouselWrapper>
