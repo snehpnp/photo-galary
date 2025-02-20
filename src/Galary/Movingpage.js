@@ -23,18 +23,26 @@ const rotating = keyframes`
   }
 `;
 
+const Card = styled.div`
+  width: 400px;
+  height: 300px;
+  background: transparent;
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
 const Container = styled.div`
-  width: 110px;
-  height: 40px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  width: 180px;
+  height: 200px;
+  position: relative;
   perspective: 1100px;
 `;
 
 const CarouselWrapper = styled.div`
-  width: 10%;
+  width: 100%;
   height: 100%;
   position: absolute;
   transform-style: preserve-3d;
@@ -50,36 +58,60 @@ const CarouselItem = styled.div`
   display: block;
   position: absolute;
   width: 180px;
-  height: 120px;
+  height: 200px;
   border: 2px solid #000;
+  border-radius: 8px;
+  overflow: hidden;
 
   img {
     width: 100%;
     height: 100%;
-    max-height: 300px;
     object-fit: cover;
   }
 
   ${({ index }) => `
-    transform: rotateY(${index * 40}deg) translateZ(288px);
+    transform: rotateY(${index * 40}deg) translateZ(300px);
   `}
 `;
 
 const CarouselPage = () => {
-  const images = [img1, img2, img3, img4, img5, img6, img7, img8, img9, img10, img11];
+  const images = [
+    img1,
+    img2,
+    img3,
+    img4,
+    img5,
+    img6,
+    img7,
+    img8,
+    img9,
+    img10,
+    img11,
+  ];
 
   return (
-    <Container>
-      <CarouselWrapper>
-        {images.map((src, index) => (
-          <CarouselItem key={index} index={index}>
-            <img
-            //  src={src} 
-             alt={`Wild Animal ${index + 1}`} />
-          </CarouselItem>
-        ))}
-      </CarouselWrapper>
-    </Container>
+    <div
+      className="flex justify-center items-center p-4 mt-10"
+      style={{
+        background: "linear-gradient(90deg, rgba(255,94,98,1) 0%, rgba(255,166,201,1) 50%, rgba(255,202,212,1) 100%)",
+        minHeight: "80vh",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
+      <Card>
+        <Container>
+          <CarouselWrapper>
+            {images.map((src, index) => (
+              <CarouselItem key={index} index={index}>
+                <img src={src} alt={`Wild Animal ${index + 1}`} />
+              </CarouselItem>
+            ))}
+          </CarouselWrapper>
+        </Container>
+      </Card>
+    </div>
   );
 };
 
