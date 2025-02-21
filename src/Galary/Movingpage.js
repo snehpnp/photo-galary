@@ -94,7 +94,7 @@ const CarouselPage = () => {
       className="flex justify-center items-center p-4 mt-10"
       style={{
         background: "linear-gradient(90deg, rgba(255,94,98,1) 0%, rgba(255,166,201,1) 50%, rgba(255,202,212,1) 100%)",
-        minHeight: "80vh",
+        // minHeight: "40vh",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",

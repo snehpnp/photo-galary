@@ -4,6 +4,7 @@ import Carousel from "./Galary/Carousel";
 import Movingpage from "./Galary/Movingpage";
 import Doomtaana from "./Songs/Doomtaana.mp3";
 import { Analytics } from '@vercel/analytics/react';
+import Magic from "./Galary/Magic";
 
 function importAll(r) {
   return r.keys().map((fileName) => r(fileName));
@@ -65,6 +66,7 @@ function App() {
       id="app"
       className="card"
       style={{
+        height:"74rem",
         background:
           "linear-gradient(90deg, rgba(255,94,98,1) 0%, rgba(255,166,201,1) 50%, rgba(255,202,212,1) 100%)",
       }}
@@ -109,12 +111,19 @@ function App() {
           >
             <i className="bi bi-journal me-2"></i>Memory Page
           </button>
+
+          <button
+            className="gallery-button bg-blue-500 text-white px-8 py-4 rounded-full text-lg hover:bg-blue-600"
+            onClick={() => setTab("magic")}
+          >
+            <i className="bi bi-journal me-2"></i>magic Memory 
+          </button>
         </div>
       </section>
 
       {tab === "carousel" && (
         <section
-          className="p-4 bg-white/50"
+          // className="p-4 bg-white/50"
           style={{
             background:
               "linear-gradient(90deg, rgba(255,94,98,1) 0%, rgba(255,166,201,1) 50%, rgba(255,202,212,1) 100%)",
@@ -167,7 +176,28 @@ function App() {
           </div>
         </section>
       )}
+
+      {tab === "magic" && (
+        <section
+          className="p-4 bg-white/50"
+          style={{
+            background:
+              "linear-gradient(90deg, rgba(255,94,98,1) 0%, rgba(255,166,201,1) 50%, rgba(255,202,212,1) 100%)",
+          }}
+        >
+          <h2 className="romantic-title text-4xl text-center mb-8">
+            Our Special Moments
+          </h2>
+          <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <Magic />
+          </div>
+        </section>
+      )}
       <Analytics />
+
+
+
+      
     </div>
   );
 }
