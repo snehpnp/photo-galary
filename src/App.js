@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
-
+import { SpeedInsights } from '@vercel/speed-insights/react';
+ 
 import Carousel from "./Galary/Carousel";
 import Movingpage from "./Galary/Movingpage";
 import Doomtaana from "./Songs/Doomtaana.mp3";
@@ -194,7 +195,7 @@ function App() {
         </section>
       )}
       <Analytics />
-
+      <SpeedInsights />
 
 
       
