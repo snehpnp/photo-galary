@@ -1,11 +1,13 @@
 import React, { useEffect, useRef, useState } from "react";
 import { SpeedInsights } from '@vercel/speed-insights/react';
+import { Analytics } from '@vercel/analytics/react';
  
 import Carousel from "./Galary/Carousel";
 import Movingpage from "./Galary/Movingpage";
 import Doomtaana from "./Songs/Doomtaana.mp3";
-import { Analytics } from '@vercel/analytics/react';
 import Magic from "./Galary/Magic";
+import Masonry from "./Galary/Masonry";
+
 
 function importAll(r) {
   return r.keys().map((fileName) => r(fileName));
@@ -17,7 +19,7 @@ const images = importAll(require.context("./Images", false, /\.(png|jpe?g|svg)$/
 const songs = [Doomtaana];
 
 function App() {
-  const [tab, setTab] = useState("carousel");
+  const [tab, setTab] = useState("magic");
   const [isPlaying, setIsPlaying] = useState(false); // Track play state
   const audioRef = useRef(null);
   const [currentSong, setCurrentSong] = useState(0);
@@ -149,14 +151,7 @@ function App() {
             Our Special Moments
           </h2>
           <div className="columns-1 md:columns-2 lg:columns-3 gap-4">
-            {images.map((img, index) => (
-              <img
-                key={index}
-                src={img}
-                alt={`Masonry ${index + 1}`}
-                className="w-full rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 mb-4"
-              />
-            ))}
+            <Masonry />
           </div>
         </section>
       )}
@@ -194,6 +189,9 @@ function App() {
           </div>
         </section>
       )}
+
+
+
       <Analytics />
       <SpeedInsights />
 
