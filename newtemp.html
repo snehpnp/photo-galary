@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Beautiful Memories ❤️</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Poppins', sans-serif;
+        }
+        .fade-in {
+            animation: fadeIn 1s ease-in;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .cube {
+            transform-style: preserve-3d;
+            transition: transform 1s;
+        }
+        .cube-face {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            backface-visibility: hidden;
+        }
+        .front  { transform: translateZ(150px); }
+        .back   { transform: rotateY(180deg) translateZ(150px); }
+        .right  { transform: rotateY(90deg) translateZ(150px); }
+        .left   { transform: rotateY(-90deg) translateZ(150px); }
+        .top    { transform: rotateX(90deg) translateZ(150px); }
+        .bottom { transform: rotateX(-90deg) translateZ(150px); }
+        .gallery-grid img {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .gallery-grid img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        .masonry {
+            column-count: 3;
+            column-gap: 1em;
+        }
+        @media (max-width: 768px) {
+            .masonry {
+                column-count: 2;
+            }
+        }
+        @media (max-width: 480px) {
+            .masonry {
+                column-count: 1;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-pink-100 to-purple-100 min-h-screen">
+    <!-- Landing Page -->
+    <div id="landing" class="min-h-screen flex flex-col items-center justify-center p-4">
+        <h1 class="text-4xl md:text-6xl font-bold text-pink-600 mb-8 text-center fade-in">Our Beautiful Journey ❤️</h1>
+        <div class="space-y-4 fade-in">
+            <button onclick="showSection('carousel')" class="w-full md:w-64 bg-pink-500 text-white px-6 py-3 rounded-lg hover:bg-pink-600 transition-all transform hover:scale-105">
+                <i class="bi bi-images me-2"></i>Carousel Gallery
+            </button>
+            <button onclick="showSection('grid')" class="w-full md:w-64 bg-purple-500 text-white px-6 py-3 rounded-lg hover:bg-purple-600 transition-all transform hover:scale-105">
+                <i class="bi bi-grid-3x3-gap me-2"></i>Grid Gallery
+            </button>
+            <button onclick="showSection('masonry')" class="w-full md:w-64 bg-indigo-500 text-white px-6 py-3 rounded-lg hover:bg-indigo-600 transition-all transform hover:scale-105">
+                <i class="bi bi-collection me-2"></i>Masonry Gallery
+            </button>
+            <button onclick="showSection('cube')" class="w-full md:w-64 bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600 transition-all transform hover:scale-105">
+                <i class="bi bi-box me-2"></i>3D Cube Gallery
+            </button>
+            <button onclick="showSection('memories')" class="w-full md:w-64 bg-red-500 text-white px-6 py-3 rounded-lg hover:bg-red-600 transition-all transform hover:scale-105">
+                <i class="bi bi-heart me-2"></i>Special Memories
+            </button>
+        </div>
+    </div>
+
+    <!-- Carousel Gallery -->
+    <div id="carousel" class="hidden min-h-screen p-4">
+        <button onclick="showSection('landing')" class="mb-4 bg-pink-500 text-white px-4 py-2 rounded-lg hover:bg-pink-600">
+            <i class="bi bi-arrow-left me-2"></i>Back
+        </button>
+        <div class="relative w-full max-w-3xl mx-auto h-[400px] rounded-lg overflow-hidden shadow-xl">
+            <div id="carousel-container" class="flex transition-transform duration-500 h-full">
+                <!-- Images will be loaded here -->
+            </div>
+            <button onclick="moveCarousel(-1)" class="absolute left-0 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-r">
+                <i class="bi bi-chevron-left"></i>
+            </button>
+            <button onclick="moveCarousel(1)" class="absolute right-0 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-l">
+                <i class="bi bi-chevron-right"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Grid Gallery -->
+    <div id="grid" class="hidden min-h-screen p-4">
+        <button onclick="showSection('landing')" class="mb-4 bg-purple-500 text-white px-4 py-2 rounded-lg hover:bg-purple-600">
+            <i class="bi bi-arrow-left me-2"></i>Back
+        </button>
+        <div class="gallery-grid grid grid-cols-1 md:grid-cols-3 gap-4">
+            <!-- Images will be loaded here -->
+        </div>
+    </div>
+
+    <!-- Masonry Gallery -->
+    <div id="masonry" class="hidden min-h-screen p-4">
+        <button onclick="showSection('landing')" class="mb-4 bg-indigo-500 text-white px-4 py-2 rounded-lg hover:bg-indigo-600">
+            <i class="bi bi-arrow-left me-2"></i>Back
+        </button>
+        <div class="masonry">
+            <!-- Images will be loaded here -->
+        </div>
+    </div>
+
+    <!-- 3D Cube Gallery -->
+    <div id="cube" class="hidden min-h-screen p-4 flex flex-col items-center">
+        <button onclick="showSection('landing')" class="mb-4 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">
+            <i class="bi bi-arrow-left me-2"></i>Back
+        </button>
+        <div class="cube-container perspective-[1000px]">
+            <div id="cube" class="cube relative w-[300px] h-[300px]">
+                <!-- Cube faces will be loaded here -->
+            </div>
+        </div>
+        <div class="mt-4 space-x-2">
+            <button onclick="rotateCube('left')" class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">
+                <i class="bi bi-arrow-left"></i>
+            </button>
+            <button onclick="rotateCube('right')" class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">
+                <i class="bi bi-arrow-right"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Memories Page -->
+    <div id="memories" class="hidden min-h-screen p-4">
+        <button onclick="showSection('landing')" class="mb-4 bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600">
+            <i class="bi bi-arrow-left me-2"></i>Back
+        </button>
+        <div class="max-w-4xl mx-auto space-y-8">
+            <!-- Memories will be loaded here -->
+        </div>
+    </div>
+
+    <script>
+        // Sample image data
+        const images = [
+            'https://source.unsplash.com/random/800x600?love',
+            'https://source.unsplash.com/random/800x600?couple',
+            'https://source.unsplash.com/random/800x600?romantic',
+            'https://source.unsplash.com/random/800x600?sunset',
+            'https://source.unsplash.com/random/800x600?beach',
+            'https://source.unsplash.com/random/800x600?flowers'
+        ];
+
+        const memories = [
+            {
+                date: '2023-01-01',
+                description: 'Our first date ❤️',
+                image: 'https://source.unsplash.com/random/800x600?date'
+            },
+            {
+                date: '2023-02-14',
+                description: 'Valentine\'s Day celebration 💝',
+                image: 'https://source.unsplash.com/random/800x600?valentine'
+            },
+            {
+                date: '2023-06-20',
+                description: 'Summer vacation together 🌞',
+                image: 'https://source.unsplash.com/random/800x600?vacation'
+            }
+        ];
+
+        let currentSection = 'landing';
+        let carouselIndex = 0;
+        let cubeRotation = 0;
+
+        // Initialize galleries
+        function initGalleries() {
+            // Carousel
+            const carousel = document.getElementById('carousel-container');
+            carousel.innerHTML = images.map(src => `
+                <img src="${src}" class="w-full h-full object-cover flex-shrink-0" alt="Gallery image">
+            `).join('');
+
+            // Grid
+            const grid = document.querySelector('.gallery-grid');
+            grid.innerHTML = images.map(src => `
+                <img src="${src}" class="w-full h-64 object-cover rounded-lg shadow-lg" alt="Gallery image">
+            `).join('');
+
+            // Masonry
+            const masonry = document.querySelector('.masonry');
+            masonry.innerHTML = images.map(src => `
+                <div class="mb-4">
+                    <img src="${src}" class="w-full rounded-lg shadow-lg" alt="Gallery image">
+                </div>
+            `).join('');
+
+            // Cube
+            const cube = document.getElementById('cube');
+            const faces = ['front', 'back', 'right', 'left', 'top', 'bottom'];
+            cube.innerHTML = faces.map((face, i) => `
+                <div class="cube-face ${face}">
+                    <img src="${images[i % images.length]}" class="w-full h-full object-cover" alt="Cube face">
+                </div>
+            `).join('');
+
+            // Memories
+            const memoriesContainer = document.querySelector('#memories > div');
+            memoriesContainer.innerHTML = memories.map(memory => `
+                <div class="bg-white rounded-lg shadow-lg p-6 fade-in">
+                    <img src="${memory.image}" class="w-full h-64 object-cover rounded-lg mb-4" alt="Memory">
+                    <p class="text-gray-600">${memory.date}</p>
+                    <p class="text-lg font-medium">${memory.description}</p>
+                </div>
+            `).join('');
+        }
+
+        function showSection(sectionId) {
+            document.getElementById(currentSection).classList.add('hidden');
+            document.getElementById(sectionId).classList.remove('hidden');
+            currentSection = sectionId;
+        }
+
+        function moveCarousel(direction) {
+            const container = document.getElementById('carousel-container');
+            carouselIndex = (carouselIndex + direction + images.length) % images.length;
+            container.style.transform = `translateX(-${carouselIndex * 100}%)`;
+        }
+
+        function rotateCube(direction) {
+            const cube = document.getElementById('cube');
+            cubeRotation += direction === 'right' ? 90 : -90;
+            cube.style.transform = `rotateY(${cubeRotation}deg)`;
+        }
+
+        // Initialize on load
+        window.onload = initGalleries;
+    </script>
+</body>
+</html>
